@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mascaras</title>
+    <script language="javascript" src="comun.js"></script>
+    <script language="javascript">
+        function valFecha(campo) {
+		    if (campo.value.length > 0) {
+			    return esFecha(campo.value);
+		    }
+		    return true;
+	    }
+
+        function changeCSS(obj, bgColor, bdColor, ftColor) {
+   		    if (document.getElementById) {
+			    obj.style.backgroundColor = bgColor;
+			    //obj.style.borderColor = bdColor;
+			    obj.style.color = ftColor;
+		    }
+	    }
+	    /*
+	    var BG_COLOR = '#0099CC'; // Color de fondo
+	    var BG_COLOR1 = '#FFFFFF'; // Color de fondo
+	    var FT_COLOR = '#000000'; // Color de fuente
+	    var ER_COLOR = '#FFAAAA'; // Color de error
+	    */
+		var BG_COLOR = '#FFFFFF'; // Color de fondo Normal
+	    var BG_COLOR_FOCUS = '#EEEEEE'; //'#FFFFCC'; // Color de fondo cuando tiene el foco
+	    var BR_COLOR = '#000000'; // Color de Borde Normal
+	    var BR_COLOR_BAD = '#FF0000'; // Color de Borde Error
+		
+	    function changeCSSGetFocus(obj, valido) {
+		    /*
+		    if (document.getElementById) {
+			    if (valido) {
+				    obj.style.backgroundColor = BG_COLOR;
+			    } else {
+				    //obj.style.backgroundColor = ER_COLOR;
+				    obj.style.borderColor = ER_COLOR;
+			    }
+			    obj.style.color = FT_COLOR;
+		    }
+		    */
+		    if (document.getElementById) {
+			    obj.style.backgroundColor = BG_COLOR_FOCUS;
+			    if (!valido) {
+				    obj.style.borderColor = BR_COLOR_BAD;
+			    }
+		    }
+	    }
+	    function changeCSSLostFocus(obj, valido) {
+		    /*
+		    if (document.getElementById) {
+			    if (valido) {
+				    obj.style.backgroundColor = BG_COLOR1;
+			    } else {
+				    //obj.style.backgroundColor = ER_COLOR;
+				    obj.style.borderColor = ER_COLOR;
+			    }
+			    obj.style.color = FT_COLOR;
+		    }
+		    */
+		    if (document.getElementById) {
+			    obj.style.backgroundColor = BG_COLOR;
+			    if (valido) {
+				    obj.style.borderColor = BR_COLOR;
+			    } else {
+				    obj.style.borderColor = BR_COLOR_BAD;
+			    }
+		    }
+	    }
+
+        function validarForm() {
+		    with( document.forms[0]) {
+			    // Valido el primero campo
+			    /*
+			    if (!esNumero(importe)) {
+				    alert('Campo incorrecto');
+				    return false;
+			    }
+			    */
+			    // Valido el segundo campo			
+			    if (!esFecha(importe3.value)) {
+				    alert('Fecha incorrecta');
+				    return false;
+			    }
+			    alert('Formulario OK');
+			    return true; // Enviaria
+		    }			
+	    }
+    </script>
+</head>
+<body>
+    <form name="form1" method="post" action="">
+        <input name="letras" type="text" onKeyPress="mascaraLetras(this)">
+        <br>
+        <input name="importe" type="text" id="importe" onKeyUp="mascaraLongitud(this, 2, 'Solo puede introducir 2 Números')" 
+                                                       onKeyPress="mascaraNumeros(this, 'Solo debe introducir Números')">
+        <br>
+        <!--
+        <input name="importe" type="text" id="importe" maxlength="10" onChange="mascaraFecha2(this)" 
+                                                                      onKeyPress="mascaraFecha(this)" 
+                                                                      onmouseover="changeCSS(this,'#0099CC','#000000','#ffffff')" 
+                                                                      onmouseout="changeCSS(this,'#ffffff','#0099CC','#000000')">
+        <input class="txtborder" name="importe2" type="text" maxlength="10" onFocus="changeCSS(this,'#0099CC','#000000','#ffffff')" 
+                                                                            onBlur="changeCSS(this,'#ffffff','#000000','#000000');valFecha(importe2.value)">
+        <br>
+        -->
+        <input class="txtborder" name="importe3" type="text" maxlength="10" onFocus="changeCSSGetFocus(this, valFecha(importe3))" 
+                                                                            onBlur="changeCSSLostFocus(this, valFecha(importe3))" 
+                                                                            onKeyPress="mascaraFecha(this)">
+        (dd/mm/aaaa)
+        <br>
+       <input type="button" name="Submit" value="Enviar" onClick="validarForm()">
+    </form>
+</body>
+</html>

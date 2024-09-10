@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Fields</title>
+    <script language="javascript">
+      var numCampos = 0;
+      function add() {
+        numCampos++;
+        var x = document.getElementById("fieldsTable").insertRow(numCampos);
+        var td1 = x.insertCell(0);
+        var td2 = x.insertCell(1);
+        var td3 = x.insertCell(2);
+        var td4 = x.insertCell(3);
+        td1.innerHTML = "<input type='text' name='campo" + numCampos + "' />";
+        td2.innerHTML =
+          "<select name='tipo'" +
+          numCampos +
+          " size='1'>" +
+          "	<option value='1'>Cadena</option>" +
+          "    <option value='2'>Entero</option>" +
+          "    <option value='3'>Real</option>" +
+          "    <option value='4'>Fecha</option>" +
+          "  	 <option value='6'>Lógico</option>" +
+          "</select>";
+        td3.innerHTML =
+          "<input type='checkbox' name='requerido" + numCampos + "'/>";
+        td4.innerHTML =
+          "<input type='button' name='btnDel' value='Eliminar' onclick='deleteField(this);'/>";
+
+        var x = document.getElementById("numFields");
+        x.innerHTML = numCampos;
+      }
+      function deleteField(r) {
+        numCampos--;
+        var i = r.parentNode.parentNode.rowIndex;
+        document.getElementById("fieldsTable").deleteRow(i);
+        var x = document.getElementById("numFields");
+        if (numCampos != 0) {
+          x.innerHTML = numCampos;
+        } else {
+          x.innerHTML = "";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form id="form1" name="form1" method="post" action="">
+      <p>
+        <input
+          type="button"
+          name="addField"
+          value="Añadir Campo"
+          onclick="add();"
+        />
+      </p>
+      <table id="fieldsTable" border="1">
+        <thead>
+          <tr bgcolor="#999999">
+            <td>Nombre Campo</td>
+            <td>Tipo</td>
+            <td>Requerido</td>
+            <td>&nbsp;</td>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <p>Numero de Campos:<span id="numFields"></span></p>
+      <input type="submit" name="submit" value="Enviar" />
+    </form>
+  </body>
+</html>

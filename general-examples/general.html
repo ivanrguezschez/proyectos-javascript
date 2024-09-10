@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General</title>
+    <script language="javascript" src="comun.js"></script>
+    <script language="javascript">
+        function validarFormulario(f) {
+            if (esTextoVacio(f.tf_nif.value)) {
+                alertFocus('Campo texto requerido', f.tf_nif);
+                return false;
+            } else {
+                if (!esLongitud(f.tf_nif.value, 9)) {
+                    alert('Campo texto longitud no puede ser mayor de 9');
+                    return false;
+                } else {
+                    var exp_regTexto = new RegExp("^[0-9]+$");
+                    if (!esMascara(f.tf_nif.value, exp_regTexto)) {
+                        alert('Campo texto no cumple el patron');
+                        return false;
+                    }
+                }
+            }
+            if (esComboVacio(f.sCombo)) {
+                alert('Campo combo requerido');
+                return false;
+            }
+            if (esListaVacio(f.select)) {
+                alert('Campo select requerido');
+                return false;
+            }
+            if (esOpcionVacio(f.checkbox)) {
+                alert('Campo checkbox requerido');
+                return false;
+            }
+            if (esOpcionVacio(f.radiobutton)) {
+                alert('Campo radiobutton requerido');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <form name="form1" method="post" action="">
+        <table width="400" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td>NIF/CIF/NIE</td>
+                <td><input name="tf_nif" type="text" id="tf_nif" value="00000000T"></td>
+            </tr>
+            <tr>
+                <td>NIF/CIF/NIE</td>
+                <td>
+                    <select name="sCombo">
+                        <option value="0"></option>
+                        <option value="1">Valor1</option>
+                        <option value="2">Valor2</option>
+                        <option value="3">Valor3</option>
+                        <option value="4">Valor4</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>NIF/CIF/NIE</td>
+                <td>
+                    <select name="select" size="3">
+                        <option value="Valor1">Valor1</option>
+                        <option value="Valor2">Valor2</option>
+                        <option value="Valor3">Valor3</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>NIF/CIF/NIE</td>
+                <td>
+                    <input type="checkbox" name="checkbox" value="checkbox1">Opcion1<br>
+                    <input type="checkbox" name="checkbox" value="checkbox2">Opcion2
+                </td>
+            </tr>
+            <tr>
+                <td>NIF/CIF/NIE</td>
+                <td>
+                    <input name="radiobutton" type="radio" value="radiobutton1">Opcion1<br>
+                    <input name="radiobutton" type="radio" value="radiobutton2">Opcion2
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="button" name="Submit" value="Botón" onClick="alert(validarFormulario(form1));">
+                    <!--<input type="button" name="Submit" value="Bot?n" onClick="f();">-->
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

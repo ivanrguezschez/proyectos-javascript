@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random</title>
+    <script language="Javascript">
+	    function generar() {
+		    var min = document.forms[0].minimo.value;
+			var max = document.forms[0].maximo.value;
+			min = Math.ceil(min);
+			max = Math.floor(max);
+			var random = Math.floor(Math.random() * (max - min + 1) + min);	
+			document.getElementById('resultado').innerHTML = `Numero aletorio entre ${min} y ${max}: ${random}`;    
+			console.log(`Número aleatorio entre ${min} y ${max}: ${random}`);	
+		}
+    </script>
+  </head>
+  <body>
+    <form name="frmRandom">
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>Mínimo:</td>
+          <td><input type="text" name="minimo" size="9" maxlength="9" /></td>
+        </tr>
+        <tr>
+          <td>Máximo:</td>
+          <td><input type="text" name="maximo" size="9" maxlength="9" /></td>
+        </tr>
+        <tr>
+          <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <input type="button" value="Generar" onClick="generar();" />
+          </td>
+        </tr>
+        <tr>
+          <td id="resultado" colspan="2" align="center"></td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

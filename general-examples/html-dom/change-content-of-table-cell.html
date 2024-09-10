@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Change the content of a table cell</title>
+    <script type="text/javascript">
+      function changeContent() {
+        var x = document.getElementById("myTable").rows[0].cells;
+        x[0].innerHTML = "NEW CONTENT";
+      }
+    </script>
+  </head>
+  <body>
+    <table id="myTable" border="1">
+      <tr>
+        <td>Row1 cell1</td>
+        <td>Row1 cell2</td>
+      </tr>
+      <tr>
+        <td>Row2 cell1</td>
+        <td>Row2 cell2</td>
+      </tr>
+      <tr>
+        <td>Row3 cell1</td>
+        <td>Row3 cell2</td>
+      </tr>
+    </table>
+    <form>
+      <input type="button" onclick="changeContent()" value="Change content" />
+    </form>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Change the colspan of a table row</title>
+    <script type="text/javascript">
+      function setColSpan() {
+        var x = document.getElementById("myTable").rows[0].cells;
+        x[0].colSpan = "2";
+        x[1].colSpan = "6";
+      }
+    </script>
+  </head>
+  <body>
+    <table id="myTable" border="1">
+      <tr>
+        <td colspan="4">cell 1</td>
+        <td colspan="4">cell 2</td>
+      </tr>
+      <tr>
+        <td>cell 3</td>
+        <td>cell 4</td>
+        <td>cell 5</td>
+        <td>cell 6</td>
+        <td>cell 7</td>
+        <td>cell 8</td>
+        <td>cell 9</td>
+        <td>cell 10</td>
+      </tr>
+    </table>
+    <form>
+      <input type="button" onclick="setColSpan()" value="Change colspan" />
+    </form>
+  </body>
+</html>

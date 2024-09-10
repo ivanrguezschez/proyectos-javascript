@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validaciones</title>
+    <script language="javascript" src="comun.js"></script>
+    <script language="Javascript">
+      function validar() {
+        alert("Inicio validar");
+        if (!esNif(document.forms[0].nif.value)) {
+          alert("NIF incorrecto");
+          document.forms[0].nif.focus();
+        }
+        if (!esNie(document.forms[0].nie.value)) {
+          alert("NIE incorrecto");
+          document.forms[0].nie.focus();
+        }
+        if (!esCif(document.forms[0].cif.value)) {
+          alert("CIF incorrecto");
+          document.forms[0].cif.focus();
+        }
+        alert("Fin validar");
+      }
+    </script>
+  </head>
+  <body>
+    <form name="frmValidaciones">
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td>Nif:</td>
+          <td><input type="text" name="nif" size="9" maxlength="9" /></td>
+        </tr>
+        <tr>
+          <td>Nie:</td>
+          <td><input type="text" name="nie" size="9" maxlength="9" /></td>
+        </tr>
+        <tr>
+          <td>Cif:</td>
+          <td><input type="text" name="cif" size="9" maxlength="9" /></td>
+        </tr>
+        <tr>
+          <td colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+          <td colspan="2" align="center">
+            <input type="button" value="Aceptar" onClick="validar();" />
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
