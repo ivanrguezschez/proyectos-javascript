@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Prototype & Scriptaculus Ejemplo General</title>
+	<script type="text/javascript" src="js/prototype.js"></script>
+	<script type="text/javascript" src="js/scriptaculous.js"></script>
+	<script type="text/javascript" src="js/effects.js"></script>
+	<script type="text/javascript">
+		Event.observe(window, 'load', function() {
+			Event.observe('boton1', 'click', click);
+			Event.observe('boton2', 'click', clear);
+			Event.observe('boton3', 'click', load);
+			//Event.observe('boton4', 'click', function() { sort($('campo2'), false);});
+			//Event.observe('boton4', 'click', sort1);
+			Event.observe('campo2', 'change', function() { 
+				//alert($F('campo2')); 
+				alert($('campo2').options[$('campo2').selectedIndex].value + ':' + $('campo2').options[$('campo2').selectedIndex].text);
+			});
+					
+			$('box').show();
+			$('box-header-img').writeAttribute('src', 'img/up.gif');
+			Event.observe('box-header-img', 'click', function(){
+				$('box-content').toggle();
+				if($('box-content').visible()){
+					$('box-header-img').writeAttribute('src', 'img/up.gif');
+				} else {
+					$('box-header-img').writeAttribute('src', 'img/down.gif');
+				}
+			});
+					
+			$('box2').show();
+			Event.observe('box2-header', 'click', function() {
+				$('box2-content').toggle();
+				if($('box2-content').visible()){
+					$('box2-header').select('h1')[0].setStyle({background: 'url(./img/up.gif) no-repeat 100% 50%'});
+				} else {
+					$('box2-header').select('h1')[0].setStyle({background: 'url(./img/down.gif) no-repeat 100% 50%'});
+				}
+			});
+		});
+			
+		var SelectPrototype = Class.create();
+		SelectPrototype.prototype = {
+			initialize : function(select, selectValue) {
+				alert('initialize');
+				this.select = select;
+				this.selectValue = selectValue;
+					
+				//var nodos = $A($(this.select).getElementsByTagName('option'));
+				alert('selectValue: ' + this.selectValue);
+				var options = $(this.select).getElementsByTagName('option');
+				for (i = 0; i < options.length; i++) {
+					if (selectValue == options[i].value) {
+						options[i].selected = true;
+						break;
+					}
+				}
+			},
+			show: function(func) {
+				alert('show: ' + $F(this.select));
+			},
+			clear: function() {
+				alert('clear');
+				var options = $(this.select).getElementsByTagName('option');
+				for (i = options.length-1; i>=0; i--) {
+					$(this.select).options[i] = null;
+				}
+				this.select.selectedIndex = -1; 
+			},
+			load: function() {
+				alert('load');
+				for (i = 0; i<5; i++) {
+					$(this.select).options[i] = new Option('Opcion' + i, i);
+				}
+			}
+		}
+	
+		function clear() {
+			new SelectPrototype("campo2", 1).clear();
+		}		
+		function load() {
+			new SelectPrototype("campo2", 1).load();
+		}	
+		function sort(selectField, value) {
+			/*
+			//var options = $A(selectField.options).sortBy(function(o) { 
+			var options = $A($('campo2').options).sortBy(function(o) { 
+				//alert('value:' + value); 
+				//alert(o.value + ':' + o.innerHTML + ':' + o.text);
+				//return o.value;
+				alert(o.innerHTML);
+				return o.innerHTML;
+				//return value ? o.value : o.text;
+			});   
+			//alert('despues de ordenar');
+			//options.each(function(o) { alert(o.value + ':' + o.text); }); 
+				
+			//selectField.innerHTML = "";   
+			//options.each(function(o) { selectField.insert(o); }); 
+			alert($('campo2').innerHTML);
+			$('campo2').innerHTML = ""; 
+			options.each(function(o) { alert('o:' + o); $('campo2').insert(o); }); 
+			*/
+		}
+			
+		function sort1() {
+			var options = $A($('campo3').options).sortBy(function(o) { return o.innerHTML });   
+			$('campo3').innerHTML = "";   
+			//options.each(function(o) { alert( Object.prototype.toString.call(o)); $('campo3').insert(o); } ); 
+			options.each(function(o) { $('campo3').insert('<option value=\"' + o.value + '\">' + o.text + '<option/>'); } ); 
+		}
+			
+		//Sort array in ascending order
+		function ArraySortAscending(a, b) {	return (a-b); }
+			
+		//Sort array in descending order
+		function ArraySortDescending(a, b) { return (b-a); }
+				
+		function sort_select(select) {
+			/*
+			var options = $A(select.options).sortBy(function(o) { return o.innerHTML });   
+			alert('sort_select:' + options.length);
+			select.innerHTML = "";   
+			//options.each(function(o) { select.insert(o); }); 
+			options.each(function(o, index) { 
+				select.options[index] = new Option(o.text, o.value);
+				//select.insert('<option value=\"' + o.value + '\">' + o.text + '<option/>'); 
+			}); 
+			*/
+			/*
+			var options = $A(select.options);   
+			var myArray = new Array();
+			options.each(function(o, index) { 
+				myArray[index] = o.value;
+			});
+			myArray.sort(ArraySortAscending);
+			myArray.each(function(o, index) { 
+				alert('[' + index + ']' + o + '.');
+			});
+			myArray.sort(ArraySortDescending);
+			myArray.each(function(o, index) { 
+				alert('[' + index + ']' + o + '.');
+			});
+			*/
+				
+			var options = $A(select.options).sortBy(function(o) { 
+				return this ? o.value : o.innerHTML 
+			}, true);   
+			options.each(function(o, index) { 
+				alert('[' + index + ']' + o.value + ':' + o.text + '.');
+			});
+			options = null;
+			options = $A(select.options).sortBy(function(o) { 
+				return this ? o.value : o.innerHTML 
+			}, false);   
+			options.each(function(o, index) { 
+				alert('[' + index + ']' + o.value + ':' + o.text + '.');
+			});
+		}
+		function click() {
+			/*
+			var lista_nodos = $('campo2').getElementsByTagName('option');
+			var nodos = $A(lista_nodos);
+			viewOptions(nodos);
+			nodos.sortBy(function(item) {
+				return item.value;
+			});
+			viewOptions(nodos);
+			*/
+			var mySelect = new SelectPrototype("campo2", 1);
+			mySelect.show();
+		}
+		function viewOptions(nodos) {
+			nodos.each(function(item) {
+				alert(item.value + ':' + item.text);
+			});
+		}
+		function showHide(box) {
+			new Effect.toggle($(box + '-content'), 'Blind', {duration:3});
+			/*
+			var element = $(box + '-content');
+			alert(element.visible());
+			if (element.visible()) {
+				Effect.BlindDown(element);
+			} else {
+				Effect.BlindUp(element);
+			}
+			*/
+		}
+	</script>
+	<style type="text/css">
+		#box {
+			border: 1px solid red;
+			margin: 0;
+			padding: 0;
+			float: left;
+		}
+		#box-header {
+			border: 1px solid black;
+			float: left;
+			margin: 0;
+			padding: 0;
+		}
+		#box-header h1 {
+			border: 1px solid blue;
+			font-size: 12pt;
+			margin: 0;
+			padding: 0;
+			float: left;
+			height: 16px;
+			line-height: 16px;
+		}
+		#box-header img {
+			border: 1px solid blue;
+			float: right;
+			margin: 0;
+			padding: 0;
+			height: 16px;
+			line-height: 16px;
+		}
+		#box-content {
+			border: 1px solid green;
+			padding: 10px;
+		}
+		#box-content p {
+			margin: 0;
+			padding: 0;
+		}
+		#box2 {
+			margin: 0;
+			padding: 0;
+		}
+		#box2-header {
+			border: 1px solid black;
+			margin: 0;
+			padding: 2px 2px 2px 5px;
+			background-color: #ccc;
+		}
+		#box2-header h1 {
+			font-size: 12pt;
+			margin: 0;
+			padding: 0;
+			background: url('./img/up.gif') no-repeat 100% 50%;
+			background-color: #ccc;
+		}
+		#box2-content {
+			border-left: 1px solid black;
+			border-right: 1px solid black;
+			border-bottom: 1px solid black;
+			margin: 0px;
+			padding: 10px;
+		}
+		#box2-content p {
+			margin: 0px;
+			padding: 0px;
+		}
+	</style>
+</head>
+<body>
+	<form id="form" action="" method="post"></form>
+		<p>
+			<label for="campo1">Campo1</label>
+			<input type="text" id="campo1" name="campo1"/>
+		</p>
+		<p>
+			<label for="campo2">Campo2</label>
+			<select id="campo2" name="campo2">
+				<option value=""></option>
+				<option value="2">Opcion2</option>
+				<option value="3">Opcion3</option>
+				<option value="1">Opcion1</option>
+			</select>
+		</p>
+		<p>
+			<label for="campo3">Campo3</label>
+			<select id="campo3" name="campo3">
+				<option value=""></option>
+				<option value="2">OpcionB</option>
+				<option value="3">OpcionA</option>
+				<option value="1">OpcionC</option>
+			</select>
+		</p>
+		<p>
+			<input type="button" id="boton1" name="boton1" value="Boton"/>
+			<input type="button" id="boton2" name="boton2" value="Limpiar"/>
+			<input type="button" id="boton3" name="boton3" value="Cargar"/>
+			<input type="button" id="boton4" name="boton4" value="Ordenar" onClick="sort_select($('campo3'));"/>
+		</p>
+	</form>
+	
+	<div id="box">
+		<div id="box-header">
+			<h1>Titulo</h1>
+			<a href="#"><img src="img/up.gif" id="box-header-img"/></a>
+		</div>
+		<div id="box-content">
+			<p>contenido del box</p>
+		</div>
+	</div>
+	<br/>
+	<br/>
+	<div style="float: right; width: 400px;">
+		<div id="box2">
+			<div id="box2-header">
+				<h1>Titulo</h1>
+			</div>
+			<div id="box2-content">
+				<p>contenido del box 2</p>
+			</div>
+		</div>
+	</div>
+	<p>mas texto</p>
+</body>
+</html>

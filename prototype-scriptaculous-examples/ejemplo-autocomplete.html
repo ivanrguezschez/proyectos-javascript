@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prototype & Scriptaculus Ejemplo Autocomplete</title>
+    <link href="css/estilos.css" rel="stylesheet" type="text/css" />
+    <script src="js/prototype.js" type="text/javascript"></script>
+    <script src="js/scriptaculous.js" type="text/javascript"></script>
+    <script src="js/ejemplo.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <p>
+      <label for="bands_from_the_70s">Your favorite rock band from the 70's:</label>
+      <br />
+      <input
+        id="bands_from_the_70s"
+        autocomplete="off"
+        size="40"
+        type="text"
+        value=""
+      />
+    </p>
+
+    <div class="autocomplete" id="band_list" style="display: none"></div>
+
+    <script type="text/javascript" language="javascript" charset="utf-8">
+      // <![CDATA[
+      new Autocompleter.Local("bands_from_the_70s", "band_list", bandsList, {});
+      // ]]>
+    </script>
+  </body>
+</html>

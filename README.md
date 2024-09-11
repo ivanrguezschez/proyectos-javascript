@@ -10,6 +10,9 @@ Proyecto de ejemplos generales desarrollado con html y javascript.
 ## paint-win-95-js 
 Proyecto que simula el programa Paint de Windows 95 desarrollado con html, css y javascript.
 
+## prototype-scriptaculous-examples 
+Proyecto con varios ejemplos que hacen uso de las librerías prototype y scriptaculous.
+
 ## tier-maker-js 
 Proyecto que simula una tier maker para puntuar diferentes cosas desarrollado con html, css y javascript.
 
