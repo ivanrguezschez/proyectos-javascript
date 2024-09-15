@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JQuery Panel Example</title>
+	<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.10.0.custom.css">
+	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.10.0.custom.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.panel.js"></script>
+    <style type="text/css">
+		#col1 {
+			float: left;
+			width: 49%;
+			border: 1px solid red;
+		}
+		#col2 {
+			float: right;
+			width: 49%;
+			border: 1px solid black;
+		}
+		/* Componente ui-panel */
+		.ui-panel {
+			width: 100%;
+		}
+		.ui-panel .ui-panel-header { 
+			position: relative; 
+			margin: 0px;
+			padding: 0px;
+		}
+		.ui-panel .ui-panel-header h1 { 
+			display: block; 
+			font-size: 1em; 
+			margin: 0px;
+			padding: 2px 0px 2px 4px;
+		}
+		.ui-panel .ui-panel-header .ui-panel-expanded { 
+			position: absolute; 
+			right: 0px; 
+			top: 50%; 
+			margin: -10px 0 0 0;
+		}
+		.ui-panel .ui-panel-header .ui-panel-expanded span { 
+			margin: 1px; 
+			padding: 0px;
+		}
+		.ui-panel .ui-panel-content { 
+			position: relative; 
+			margin: 0px;
+			padding: 10px;
+			/* Para poner el fondo del contenido en blanco */
+			/*background: #FFFFFF none no-repeat scroll 0 0 !important;*/
+		}
+	</style>
+    <script type="text/javascript">
+		$(function(){
+			$('#panel1').panel();	   						
+			$('#col1').panel();				   
+			$('#col2').panel();				   
+			
+			var H = 0;
+			//$("div.ui-panel-content").each(function(i){
+			//var h = $("div.ui-panel-content").eq(i).height();
+			//$("div.ui-panel-content").each(function() {				
+			$('#columnas div.ui-panel-content').each(function() {				
+				var h = $(this).height();
+				if(h > H) H = h;
+			});
+			//$("div.ui-panel-content").height(H);
+			$('#columnas div.ui-panel-content').height(H);
+		});
+	</script>
+</head>
+<body>
+	<div id="panel1">
+        <div id="columnas">
+			<div id="col1">
+				Columna 1 Columna 1 Columna 1<br/>
+                Columna 1 Columna 1 Columna 1<br/>
+                Columna 1 Columna 1 Columna 1<br/>
+                Columna 1 Columna 1 Columna 1
+            </div>
+            <div id="col2">
+				Columna 2
+            </div>
+            <div style="clear:both;"></div>
+		</div>                    
+    </div>
+</body>
+</html>

@@ -1,0 +1,37 @@
+{
+	"catalog" : [
+		{
+			"codigo": "cd-001",
+			"params": [
+				{ "name": "title", "value": "Empire Burlesque" },
+				{ "name": "artist", "value": "Bob Dylan" },
+				{ "name": "country", "value": "USA" },
+				{ "name": "company", "value": "Columbia" },
+				{ "name": "price", "value": "10.90" },
+				{ "name": "year", "value": "1985" }
+			]
+		},
+		{
+			"codigo": "cd-002",
+			"params": [
+				{ "name": "title", "value": "Hide your heart" },
+				{ "name": "artist", "value": "Bonnie Tyler" },
+				{ "name": "country", "value": "UK" },
+				{ "name": "company", "value": "CBS Records" },
+				{ "name": "price", "value": "8.90" },
+				{ "name": "year", "value": "1988" }
+			]
+		},
+		{
+			"codigo": "cd-003",
+			"params": [
+				{ "name": "title", "value": "Greatest Hits" },
+				{ "name": "artist", "value": "Dolly Parton" },
+				{ "name": "country", "value": "USA" },
+				{ "name": "company", "value": "RCA" },
+				{ "name": "price", "value": "9.90" },
+				{ "name": "year", "value": "1982" }
+			]
+		}
+	]
+}

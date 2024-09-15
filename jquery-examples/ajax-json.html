@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JQuery Ajax JSON Example</title>
+	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript">
+		$(function() {
+			$('#button1').click(function() {
+				$.ajax({
+					url: 'cd-catalog.json',
+					dataType: 'json',
+					success: readJSONIntoArray
+				});
+			});
+			function readJSONIntoArray(data) {
+				$('#catalog').html('');
+				$('#catalog').attr('style', 'border: 1px solid black; margin-top: 10px; padding: 10px;');
+				
+				// para que funcione data tendria que ser un string con la representacion json de los datos
+				// la llamada ajax ya lo transforma en un objeto
+				//var obj = jQuery.parseJSON(data);
+					
+				$.each(data.catalog, function(index, item) {
+					var codigo = item.codigo;
+					var params = '';
+					jQuery.each(item.params, function() {
+						var name = this.name;
+						var value = this.value;
+						params += '<b>' + name + '</b>:' + value + '&nbsp;';
+					});
+					$('#catalog').append('[' + codigo + ']&nbsp;' + params + '<br/>');
+				});
+			}
+		});
+	</script>
+</head>
+<body>
+	<a id="button1" href="#">Cargar JSON</a>
+	<div id="catalog"></div>
+</body>
+</html>

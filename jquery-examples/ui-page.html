@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JQuery UI Page Example</title>
+	<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.10.0.custom.css">
+	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.10.0.custom.min.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.panel.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.labelrequired.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.buttonbar.js"></script>
+	<script type="text/javascript" src="js/jquery.ui.box.js"></script>
+	<script type="text/javascript" src="js/jquery.loader.js"></script>
+	<style type="text/css">
+		body{ font: 72.5% "Trebuchet MS", sans-serif; margin: 50px;}
+		/*
+		.demoHeaders { margin-top: 2em; }
+		#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
+		#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
+		ul#icons {margin: 0; padding: 0;}
+		ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+		ul#icons span.ui-icon {float: left; margin: 0 4px;}
+		*/
+		p {
+			margin: 0px;
+			padding: 0px;
+		}
+		form {
+			/*border: 1px solid red;*/
+		}
+		#fields {
+		}
+		#fields form div {
+			margin: 5px 0px 5px 0px;
+		}
+		#fields form div.first {
+			margin: 0px 0px 5px 0px;
+		}
+		#fields form div.last {
+			margin: 5px 0px 0px 0px;
+		}
+		#fields form div.none {
+			margin: 0px 0px 0px 0px;
+		}
+		#fields form label {
+			float: left;
+			width: 150px;
+			font-weight: bold;
+			margin: 0px 10px 0px 0px;
+			padding: 1px 0px;
+			border: 1px solid transparent !important;
+		}
+		#fields img {
+			height: 16px;
+			margin: 0px;
+			padding: 1px 0px 0px 0px;
+			vertical-align: top;
+		}
+		#fields br {
+			clear: left;
+		}
+		/* Mensaje de campos requeridos */
+		.fields-required {
+			margin: 0px 0px 15px 0px;
+			font-weight: bold;
+			border: none !important;
+			padding: 0px;
+		}
+		.fields-required p {
+			float: left;
+			margin: 0px;
+			padding: 0px 0px 0px 0px;
+		}
+		#botonera1 {
+			margin: 15px 0px 0px 0px; 
+			padding: 5px 0px 0px 0px; 
+			border-top: 1px solid #dddddd;
+		}
+		/* Componente ui-panel */
+		.ui-panel {
+			width: 100%;
+		}
+		.ui-panel .ui-panel-header { 
+			position: relative; 
+			margin: 0px;
+			padding: 0px;
+		}
+		.ui-panel .ui-panel-header h1 { 
+			display: block; 
+			font-size: 1em; 
+			margin: 0px;
+			padding: 2px 0px 2px 4px;
+		}
+		.ui-panel .ui-panel-header .ui-panel-expanded { 
+			position: absolute; 
+			right: 0px; 
+			top: 50%; 
+			margin: -10px 0 0 0;
+		}
+		.ui-panel .ui-panel-header .ui-panel-expanded span { 
+			margin: 1px; 
+			padding: 0px;
+		}
+		.ui-panel .ui-panel-content { 
+			position: relative; 
+			margin: 0px;
+			padding: 10px;
+			/* Para poner el fondo del contenido en blanco */
+			/*background: #FFFFFF none no-repeat scroll 0 0 !important;*/
+		}
+		/* Componente ui-label-required */
+		.ui-label-required.ui-state-default {
+			position: relative;
+			color: #000000;
+			background: none repeat scroll 0 0 transparent !important;
+		}
+		.ui-label-required span {
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+		/* Componente ui-buttonbar */
+		.ui-buttonbar {
+			margin: 0px;
+			padding: 0px;
+		}
+		.ui-buttonbar-left {
+			float: left;
+			margin: 0px;
+			padding: 0px;
+		}
+		.ui-buttonbar-right {
+			float:right;
+			margin: 0px;
+			padding: 0px;
+		}
+		.ui-buttonbar button, .ui-buttonbar a {
+			margin: 0px;
+		}
+		/* Componente ui-box */
+		.ui-box {
+			/*border: 1px solid red; */
+			padding: 2px 5px; 
+			position: relative;
+		}
+		.ui-box-icon {
+			float: left;
+			position: absolute; 
+			top: 50%; 
+			margin: -8px 0 0 0;
+			/*border: 1px solid red;*/
+		}
+		.ui-box-text {
+			margin-left: 23px !important; 
+			font-weight: bold; 
+			margin: 0px; 
+			padding: 0px; 
+			/*border: 1px solid black;*/
+		}
+		.loader-foreground { 
+			/*border: 2px solid #000;*/
+			padding: 10px;
+			text-align: center;
+			background: #fff url(img/loader0.gif) center center no-repeat; 
+		}
+		.loader-foreground div { 
+			font-weight: bold;
+		}
+		.loader-background { 
+			/*background-color: #666666;*/
+			background: #666666 url(css/smoothness/images/ui-bg_diagonals-thick_20_666666_40x40.png) 50% 50% repeat; 
+			opacity: .50;
+			filter:Alpha(Opacity=50); 
+		}
+	</style>			
+	<script type="text/javascript">
+		$(function(){
+			$('#panel1').panel();
+				
+			$('#panel2').panel();
+			$('#numeroLabel').labelrequired();
+			$('#soporteLabel').labelrequired();
+			$('#fechaCreacionLabel').labelrequired();
+			$("#fechaCreacion").datepicker({
+				changeMonth : true,
+				changeYear : true,
+				showOn : "button",
+				buttonImage : "img/calendario.gif",
+				buttonImageOnly : true
+			});
+			$("#botonera1").buttonbar({ alignments: { secondary: 'right' } } );
+			
+			$('#panel3').panel();
+			$('#panel3-1').panel();
+			
+			$("#botonera2").buttonbar();
+			$("#botonera3").buttonbar({ alignments: { secondary: 'right' } } );
+				
+			$("#boton1").button().click(function () {
+				$.loader({content: 'Procesando...'});
+				setTimeout(function() { $.loader('hide'); }, 5000);
+			});
+				
+			$("#boton2").button({
+				text: false,
+				icons: {
+					primary: "ui-icon-locked"
+				}
+			});
+				
+			$("#boton2").removeClass("ui-button-text-icon-primary");
+			
+			$("#boton3").button({
+				icons: {
+					primary: "ui-icon-locked"
+				}
+			});
+			
+			//$("#boton4").button({ text: false });
+			$("#boton4")
+				.hover(
+					function() { $(this).addClass('ui-state-hover'); }, 
+					function() { $(this).removeClass('ui-state-hover'); }
+				);
+				
+			$("#boton5")
+				.hover(
+					function() { $(this).addClass('ui-state-hover'); }, 
+					function() { $(this).removeClass('ui-state-hover'); }
+				);
+					
+			$('#box1').box({type: 'message', message: 'Imagen eliminada correctamente', hidden: false});
+			$('#box2').box({type: 'error',  message: 'Título es requerido<br/>Grupo es requerido', hidden: false});
+			$('#box3').box({message: 'Mensaje de prueba<br/>de varias lineas'});
+				
+			$("#showButton").button().click(function() {
+				$('#box1').box({hidden: false});
+				$("#hideButton").button('enable');
+				$("#showButton").button('disable');
+			});
+			$("#showButton").button('disable');
+			$("#hideButton").button().click(function() {
+				$('#box1').box({hidden: true});
+				$("#hideButton").button('disable');
+				$("#showButton").button('enable');
+			});
+				
+			$("#addButton").button().click(function() {
+				$('#box2').box({type: 'error',  message: 'Título es requerido<br/>Grupo es requerido', hidden: false});
+			});
+			$("#delButton").button().click(function() {
+				$('#box2').box('destroy');
+			});
+			$("#changeButton1").button().click(function() {
+				//$('#box2').box('message', 'Nuevo mensaje ' + new Date());
+				$('#box2').box({type: 'message', message: 'Nuevo mensaje ' + new Date()});
+			});
+			$("#changeButton2").button().click(function() {
+				$('#box2').box('message', 'Nuevo mensaje ' + new Date());
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>Welcome to My jQuery UI!</h1>
+	
+	<!-- Panel -->
+	<h2 class="demoHeaders">Panel</h2>
+	<div id="panel1" title="Encabezado">
+		<div>
+			Contenido
+			<p>This page demonstrates the widgets you downloaded using the theme you selected in the download builder. We've included and linked to minified versions of <a href="js/jquery-1.4.4.min.js">jQuery</a>, your personalized copy of <a href="js/jquery-ui-1.8.10.custom.min.js">jQuery UI (js/jquery-ui-1.8.10.custom.min.js)</a>, and <a href="css/ui-lightness/jquery-ui-1.8.10.custom.css">css/ui-lightness/jquery-ui-1.8.10.custom.css</a> which imports the entire jQuery UI CSS Framework. You can choose to link a subset of the CSS Framework depending on your needs. </p>
+		</div>
+	</div>
+	<br/>
+	<div id="panel2" title="Criterios de Busqueda">
+		<div id="fields">
+			<div class="ui-state-default fields-required">
+				<p>Los campos obligatorios están marcados con</p><span class="ui-icon ui-icon-star"></span>
+			</div>
+			<form id="volumenSearchForm" action="volumenSearch.htm" method="post">
+				<div class="first">
+					<label for="numero">Número:</label>
+					<input id="numero" name="numero" type="text" value="" size="4" maxlength="4"/>
+				</div>
+				<div>
+					<label for="descripcion">Descripción:</label>
+					<input id="descripcion" name="descripcion" type="text" value="" size="50" maxlength="200"/>
+				</div>
+				<div>
+					<label id="soporteLabel" for="soporte">Soporte:</label>
+					<select id="soporte" name="soporte">
+						<option value="">Seleccione...</option>
+						<option value="CD">CD</option><option value="DVD">DVD</option>
+					</select>
+				</div>
+				<div class="last">
+					<label id="fechaCreacionLabel" for="fechaCreacion">Fecha de Creación:</label>
+					<input id="fechaCreacion" name="fechaCreacion" type="text" value="" size="12" maxlength="10"/>
+				</div>
+			</form>
+			<div id="botonera1">
+				<button id="buscarButton">Buscar</button>
+				<button id="limpiarButton" class="ui-priority-secondary">Limpiar</button>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<div id="panel3" title="Encabezado">
+		<div>
+			<p>Panel con un subpanel. </p>
+			<div id="panel3-1" title="Subencabezado">
+				<div>
+					<p>Contenido del subpanel.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Botoneras -->
+	<h2 class="demoHeaders">Botoneras</h2>
+	<p>Botonera por defecto, botones secundarios a la izquierda y los botones primarios a la derecha</p>
+	<div id="botonera2">
+		<button id="volverButton" class="ui-priority-secondary">Volver</button>
+		<button id="nuevoButton" class="ui-priority-primary">Nuevo Volumen</button>
+		<a id="nuevoLink" href="#">Nuevo Volumen</a>
+	</div>
+	<br/>
+	<p>Botonera con todos los botones a la derecha</p>
+	<div id="botonera3">
+		<a id="nuevoLink" href="#" class="ui-priority-primary">Nuevo Volumen</a>
+		<button id="volverButton" class="ui-priority-secondary">Volver</button>
+	</div>
+	<br/>
+	
+	<!-- Box -->
+	<h2 class="demoHeaders">Box</h2>
+	<p>Cajas con mensajes de información, error, etc</p>
+	
+	<button id="showButton">Mostrar Mensaje</button>
+	<button id="hideButton">Ocultar Mensaje</button>
+	<br/><br/>
+	<div id="box1"></div>	
+	<br/><br/>
+	
+	<button id="addButton">Crear Mensaje</button>
+	<button id="delButton">Eliminar Mensaje</button>
+	<button id="changeButton1">Cambiar Mensaje</button>
+	<button id="changeButton2">Cambiar Mensaje</button>
+	<br/><br/>
+	<div id="box2"></div>	
+	<br/><br/>
+	
+	<div id="box3"></div>	
+	<br/><br/>
+		
+	<h2 class="demoHeaders">Ejemplo de botones</h2>
+	<button id="boton1">Boton1</button>
+	<button id="boton2">Boton2</button>
+	<button id="boton3">Boton3</button>
+	
+	<button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only">
+		<span class="ui-button-text">Button Label</span>
+	</button>
+	
+	<button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-primary">
+		<span class="ui-button-icon-primary ui-icon ui-icon-locked"></span>
+		<span class="ui-button-text">Button Label</span>
+	</button>
+	<button class="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-secondary">
+		<span class="ui-button-icon-secondary ui-icon ui-icon-locked"></span>
+		<span class="ui-button-text">Button Label</span>
+	</button>
+	
+	<button id="boton4" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" title="Boton4">
+		<span class="ui-button-icon-primary ui-icon ui-icon-locked"></span>
+		<span class="ui-button-text">Boton4</span>
+	</button>
+	<button id="boton5" class="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only ui-button-text-icon-secondary" title="Boton5">
+		<span class="ui-button-icon-secondary ui-icon ui-icon-locked"></span>
+		<span class="ui-button-text">Boton5</span>
+	</button>
+</body>
+</html>

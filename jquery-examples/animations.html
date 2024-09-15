@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JQuery Animations Example</title>
+	<link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.10.0.custom.css">
+	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.10.0.custom.min.js"></script>
+	<style> 
+		li { 
+			padding-bottom: 500px; 
+		} 
+	</style>
+	<script>
+	 	$(document).ready(function() {
+	 		/*
+			$('a').click(function() { alert('hi') }).click();
+			$('ul').click(function (event) {
+				// event.target is the <a>
+				$(event.target).parent().remove();
+				
+				// or
+				//$(event.target).parent('li').remove();
+				
+				return false;
+			});
+			
+			$('button').on('click', function () { 
+				$(this).after("<button>Add another button</button>"); 
+			});
+			
+			$('div').click(function (event) { 
+				// Attach click handler to <div>. 
+				alert('You clicked the outer div'); 
+			});
+			$('span').click(function (event) { 
+				// Attach click handler to <span>. alert('You clicked a span inside of a div element'); 
+				// Stop click on <span> from propagating to <div>. 
+				// If you comment out the line below, 
+				//the click event attached to the div will also be invoked. 
+				event.stopPropagation(); 
+			});
+			*/
+			
+			/*
+			$(document).mousemove(function (e) { 
+				// e.pageX - gives you the X position. 
+				// e.pageY - gives you the Y position. 
+				$('body').html('e.pageX = ' + e.pageX + ', e.pageY = ' + e.pageY); 
+			});
+			*/
+			
+			/*
+			$('div').mousemove(function(e) { 
+				//relative to this div element instead of document. 
+				var relativeX = e.pageX - this.offsetLeft; 
+				var relativeY = e.pageY - this.offsetTop; 
+				$(this).html('releativeX = ' + relativeX + ', releativeY = ' + relativeY); 
+			});
+			*/
+			
+			/*
+			$('.next').click(function () { 
+				$('html, body').animate({ scrollTop: $(this).parent().next().find('a').offset().top }, 1000); 
+			});
+			$('.prev').click(function () { 
+				$('html, body').animate({ scrollTop: $(this).parent().prev().find('a').offset().top }, 1000); 
+			});
+			*/
+			
+			/*
+			$.fn.count = function () { 
+				var $this = $(this); // "this" is the jQuery object. 
+				$this.text('0'); // Sets the counter start number to zero. 
+				var myInterval = window.setInterval(function () { 
+					// Interval for counting. 
+					var currentCount = parseFloat($this.text()); 
+					var newCount = currentCount + 1; 
+					$this.text(newCount + ''); 
+				}, 1000); 
+			};
+			
+			$('#counter1').count();
+			*/
+			
+			// Each effect is added to a queue and occurs sequentially. 
+			$('div:first').slideUp('slow').slideDown('slow').hide('slow'); 
+			// Each method is added to a queue and occurs sequentially. 
+			$('div:last').animate({ width: '200px' }, 1000).animate({ borderLeftWidth: '10px' }, 1000);
+		});
+	</script>
+</head>
+<body>
+	<!--
+	<a>Say Hi</a>
+	<a>Say Hi</a>
+	<br/>
+	<ul>
+		<li><a href="#">remove</a></li>
+		<li><a href="#">remove</a></li>
+		<li><a href="#">remove</a></li>
+		<li><a href="#">remove</a></li>
+		<li><a href="#">remove</a></li>
+		<li><a href="#">remove</a></li>
+	</ul>
+	<br/>
+	<button>Add another button</button>
+	<br/><br/>
+	<div style="border: 1px solid black;"><span>stop</span></div>
+	<br/>
+	<div style="margin: 200px; height: 100px; width: 100px; background: #ccc; padding: 20px">relative to this </div>
+	<br/>
+	-->
+	<!--
+	<ul>
+		<li><a href="#" class="next">Next</a></li>
+		<li><a href="#" class="next">Next</a>/<a href="#" class="prev">Previous</a></li>
+		<li><a href="#" class="next">Next</a>/<a href="#" class="prev">Previous</a></li>
+		<li><a href="#" class="prev">Previous</a></li>
+	</ul>
+	-->
+	
+	<!--	
+	<br/>
+	<div id="counter1"></div>
+	-->
+	
+	<div style="height: 100px; width: 100px; background-color: red; position: absolute; left: 20px; border: 1px solid #ff9933"> Animate me! </div>
+	<div style="height: 100px; width: 100px; background-color: red; position: absolute; left: 20px; top: 100px; border: 1px solid #ff9933"> Animate me! </div>
+</body>
+</html>

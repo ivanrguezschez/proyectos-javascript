@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JQuery Dialog Example</title>
+	<link rel="stylesheet" href="css/smoothness/jquery-ui-1.10.0.custom.css">
+    <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.10.0.custom.min.js"></script>
+	<style>
+    	.ui-dialog {
+    		font-size: 12px !important;
+    	}
+    </style>
+    <script type="text/javascript"> 
+        $(document).ready(function() {
+        	$("#button1").button({
+				icons: {
+    	    		primary: "ui-icon-search"
+    	    	}
+        	});
+        	$("#dialog").dialog({
+        		autoOpen: false,
+        		modal: true,
+        		buttons: [
+        			{
+        				text: 'Aceptar',
+        		      	icons: {
+        					primary: "ui-icon-check"
+      					},
+        				click: function() { alert('Pulsamos Aceptar'); }
+        			},
+        			{
+        				text: 'Cancelar',
+        				icons: {
+        					primary: "ui-icon-closethick"
+      					},
+        				click: function() { 
+        					alert('Pulsamos Cerrar');
+        					$(this).dialog('close'); 
+        				}
+        			}
+        		]
+        	});
+            $('#linkOpen').click(function() {
+            	$("#dialog").dialog("open");
+            });
+        });
+    </script>
+</head>
+<body>
+	<h1>Ejemplo de Dialog de JQuery UI</h1>
+	<a id="linkOpen" href="#">Abrir Dialog</a>
+	
+	<div id="dialog" title="TITULO DIALOGO">
+  		<p>Contenido del dialogo.</p>
+  		<button id="button1">Buscar</button>
+	</div>	
+</body>
+</html>

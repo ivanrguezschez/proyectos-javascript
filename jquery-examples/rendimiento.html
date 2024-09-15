@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JQuery Rendimiento Example</title>
+	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+	<script>
+		var texto = "";
+	 	$(document).ready(function() {
+			// URL donde está publicado el artículo (los rendimientos se ven desde la consola de Chrome pestaña "Rendimiento")
+			// https://www.arquitecturajava.com/javascript-console-profile-y-rendimiento/
+
+			// Opcion 1 mas lenta
+			/*  
+			for (var i = 0; i < 10000; i++) {
+				$("body").append("<p>hola</p>");
+			}
+			*/
+			
+			/*
+			// Opcion 2 mejor redimiento
+			var $body = $("body");
+			for (var i = 0; i < 10000; i++) {
+				$body.append("<p>hola</p>");
+			}
+			*/
+
+			// Opcion 3 la mejor redimiento
+			var $body = $("body");
+			for (var i = 0; i < 10000; i++) {
+				texto += "<p>hola</p>";
+			}
+			$body.append(texto);
+		});
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

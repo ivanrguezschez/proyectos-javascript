@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JQuery Ajax XML Example</title>
+	<script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript">
+		$(function() {
+			$('#button1').click(function() {
+				$.ajax({
+					type: 'GET',
+					url: 'cd-catalog.xml',
+					dataType: 'xml',
+					async: false,
+					success: readXMLIntoArray
+				});
+			});
+			function readXMLIntoArray(xml) {
+				$('#catalog').html('');
+				$('#catalog').attr('style', 'border: 1px solid black; margin-top: 10px; padding: 10px;');
+				$(xml).find('cd').each(function() {
+					var id = $(this).attr('id');
+					var params = '';
+					$(this).find('param').each(function() {  
+						var name = $(this).attr('name');  
+						var value = $(this).attr('value');  
+						params += '<b>' + name + '</b>:' + value + '&nbsp;';
+					});  
+					$('#catalog').append('[' + id + ']' + params + '<br/>');
+				});
+			}
+		});
+	</script>
+</head>
+<body>
+	<a id="button1" href="#">Cargar XML</a>
+	<div id="catalog"></div>
+</body>
+</html>

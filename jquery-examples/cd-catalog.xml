@@ -1,0 +1,26 @@
+<catalog>  
+	<cd id="cd-001">  
+		<param name="title" value="Empire Burlesque" />  
+		<param name="artist" value="Bob Dylan" />  
+		<param name="country" value="USA" />  
+		<param name="company" value="Columbia" />  
+		<param name="price" value="10.90" />  
+		<param name="year" value="1985" />  
+	</cd>  
+	<cd id="cd-002">  
+		<param name="title" value="Hide your heart" />  
+		<param name="artist" value="Bonnie Tyler" />  
+		<param name="country" value="UK" />  
+		<param name="company" value="CBS Records" />  
+		<param name="price" value="9.90" />  
+		<param name="year" value="1988" />  
+	</cd>  
+	<cd id="cd-003">  
+		<param name="title" value="Greatest Hits" />  
+		<param name="artist" value="Dolly Parton" />  
+		<param name="country" value="USA" />  
+		<param name="company" value="RCA" />  
+		<param name="price" value="9.90" />  
+		<param name="year" value="1982" />  
+	</cd>  
+</catalog>  

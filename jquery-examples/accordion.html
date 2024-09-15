@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JQuery Accordion Example</title>
+    <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.10.0.custom.css" />
+    <script type="text/javascript" src="js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery-ui-1.10.0.custom.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, Verdana, Helvetica, sans-serif;
+        font-size: 75%;
+      }
+      form {
+        margin: 0px;
+        padding: 0px;
+      }
+      table.tableData {
+        width: 100%;
+        border: 1px solid #929292;
+        border-collapse: collapse;
+        font-size: 0.7em;
+        border-spacing: 0px;
+        font-size: 100%;
+      }
+      table.tableForm {
+        width: 100%;
+        border: none;
+        margin: 0;
+        padding: 0;
+        border-spacing: 0px;
+      }
+      table.tableData thead th {
+        border: 1px solid #929292;
+        padding: 4px;
+        background-color: #dddddd;
+        text-align: center;
+      }
+      table.tableData thead th.right {
+        text-align: right;
+      }
+      table.tableData tbody td {
+        border: 1px solid #929292;
+        padding: 4px;
+        background-color: #fff;
+      }
+      table.tableData tbody td.right {
+        text-align: right;
+      }
+      table.tableData tbody td.center {
+        text-align: center;
+      }
+      table.tableData tbody th.right {
+        border-right: 1px solid #cacaca;
+        padding: 4px;
+        text-align: right;
+      }
+      table.tableData tbody tr.odd th {
+        background-color: #f5f5f5;
+      }
+      table.tableData tbody tr.even th {
+        background-color: #fff;
+      }
+      table.tableData tbody tr.odd td {
+        background-color: #f5f5f5;
+      }
+      table.tableData tbody tr.even td {
+        background-color: #fff;
+      }
+      table.tableData tbody tr.selected td {
+        background-color: #9bbcdd;
+      }
+      table.tableData tbody tr.highlight td {
+        background-color: #fdf5d0;
+        cursor: pointer;
+      }
+      table.tableData tfoot tr th {
+        border: 1px solid #929292;
+        padding: 0;
+        background-color: #dddddd;
+      }
+      table.tableData tfoot tr th.sumary {
+        padding: 7px;
+        text-align: left;
+      }
+      table.tableData tfoot tr th.numero {
+        padding: 4px;
+        text-align: right;
+      }
+      table.tableForm td {
+        border: none;
+        padding: 4px 0px;
+      }
+      div.botonera {
+        margin-top: 20px;
+        padding-top: 5px;
+        border-top: 1px solid #a6c9e2;
+        overflow: hidden;
+      }
+      div.botonera div.left {
+        float: left;
+      }
+      div.botonera div.right {
+        float: right;
+      }
+
+      div.pagination {
+        text-align: center;
+        padding: 5px;
+        margin: 0px;
+      }
+      div.pagination div.sumary {
+        float: left;
+        padding: 3px 0px;
+      }
+      div.pagination div.sumary a > img {
+        padding: 0px;
+        margin: 0px;
+        border: none;
+        vertical-align: middle;
+      }
+      div.pagination div.navigation {
+        float: right;
+        padding: 3px 0px;
+      }
+      div.pagination div.navigation a {
+        padding: 2px 5px 2px 5px;
+        margin: 2px;
+        border: 1px solid #fff;
+        text-decoration: none;
+        color: #000;
+        background-color: #c3c3c3;
+      }
+      div.pagination div.navigation a:hover,
+      div.pagination div.navigation a:active {
+        border: 1px solid #000;
+        color: #fff;
+      }
+      div.pagination div.navigation span.current {
+        padding: 2px 5px 2px 5px;
+        margin: 2px;
+        border: 1px solid #000;
+        font-weight: bold;
+        background-color: #fff;
+        color: #000;
+      }
+      div.pagination div.navigation span.disabled {
+        padding: 2px 5px 2px 5px;
+        margin: 2px;
+        border: 1px solid #fff;
+        color: #fff;
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        $("#accordion").accordion();
+        $("#button").button({
+          icons: {
+            primary: "ui-icon-locked",
+          },
+        });
+
+        $("#accordionSearchCriteria").accordion({ collapsible: true });
+        $("#accordionSearchResult").accordion({ collapsible: true });
+
+        $("#botonVolver").button();
+        $("#botonBuscar").button({
+          icons: {
+            primary: "ui-icon-search",
+          },
+        });
+        $("#botonBuscar").click(function (event) {
+          event.preventDefault();
+          alert("Buscar");
+        });
+
+        $("#buttonUsuarioAdd").button({
+          icons: {
+            primary: "ui-icon-plusthick",
+          },
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Administración de Usuarios</h1>
+    <p>
+      Para crear un nuevo usuario pulse sobre el botón 'Nuevo Usuario', para
+      realizar una busqueda de usuarios introduzca los criterios de búsqueda y
+      pulse el botón 'Buscar'.
+    </p>
+
+    <div style="text-align: right; margin-bottom: 10px">
+      <button id="buttonUsuarioAdd">Nuevo Usuario</button>
+    </div>
+
+    <div id="accordionSearchCriteria">
+      <h3>Criterios de Busqueda</h3>
+      <div style="padding: 20px 10px 10px 10px">
+        <form id="usuarioSearchCommand" action="" method="post">
+          <table class="tableForm">
+            <tr>
+              <td width="10%"><label for="nif">NIF:</label></td>
+              <td width="40%">
+                <input id="nif" name="nif" type="text" value="" size="8" maxlength="9" />
+              </td>
+              <td width="10%"><label for="nombre">Nombre:</label></td>
+              <td width="40%">
+                <input id="nombre" name="nombre" type="text" value="" size="55" maxlength="50" />
+              </td>
+            </tr>
+            <tr>
+              <td width="10%"><label for="apellido1">1º Apellido:</label></td>
+              <td width="40%">
+                <input id="apellido1" name="apellido1" type="text" value="" size="55" maxlength="50" />
+              </td>
+              <td width="10%"><label for="apellido2">2º Apellido:</label></td>
+              <td width="40%">
+                <input id="apellido2" name="apellido2" type="text" value="" size="55" maxlength="50" />
+              </td>
+            </tr>
+            <tr>
+              <td width="10%"><label for="rol">Rol:</label></td>
+              <td width="40%">
+                <select id="rol" name="rol">
+                  <option value="">Seleccione...</option>
+                  <option value="1">ADMINISTRADOR</option>
+                  <option value="3">PATRIMONIO ESTATAL</option>
+                  <option value="4">PATRIMONIO SINDICAL</option>
+                  <option value="2">SGAF</option>
+                </select>
+              </td>
+              <td colspan="2">
+                <input id="baja" name="baja" type="checkbox" value="1" />
+                <input type="hidden" name="_baja" value="on" />
+                <label for="baja">Usuarios dados de Baja</label>
+              </td>
+            </tr>
+          </table>
+          <div class="botonera">
+            <div class="left">
+              <input type="button" id="botonVolver" value="Volver" />
+            </div>
+            <div class="right">
+              <button id="botonBuscar">Buscar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <br />
+    <div id="accordionSearchResult">
+      <h3>Resultado de la Busqueda</h3>
+      <div style="padding: 20px 10px 10px 10px">
+        <table class="tableData">
+          <thead>
+            <tr>
+              <th width="60px">NIF</th>
+              <th>NOMBRE</th>
+              <th>1º APELLIDO</th>
+              <th>2º APELLIDO</th>
+              <th width="100px">ROL</th>
+              <th width="60px">F. ALTA</th>
+              <th width="60px">F. BAJA</th>
+              <th width="60px">&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="even">
+              <td>00000001R</td>
+              <td>Nombre-01</td>
+              <td>Apellido1-01</td>
+              <td>Apellido2-01</td>
+              <td>ADMINISTRADOR</td>
+              <td>06/10/2015</td>
+              <td>&nbsp;</td>
+              <td class="center">
+                <a href="#">
+					<img title="Pulse para editar el usuario" border="0" alt="Pulse para editar el usuario" src="img/edit.png" align="middle" />
+				</a>
+                <a href="javascript:eliminar('3');">
+					<img title="Pulse para eliminar el usuario" border="0" alt="Pulse para eliminar el usuario" src="img/delete.png" align="middle" />
+				</a>
+                <a href="#">
+					<img title="Pulse para ver el usuario" border="0" alt="Pulse para ver el usuario" src="img/view.png" align="middle" />
+				</a>
+              </td>
+            </tr>
+            <tr class="odd">
+              <td>00000009D</td>
+              <td>Nombre-02</td>
+              <td>Apellido1-02</td>
+              <td>Apellido2-02</td>
+              <td>ADMINISTRADOR</td>
+              <td>06/10/2015</td>
+              <td>&nbsp;</td>
+              <td class="center">
+                <a href="#">
+					<img title="Pulse para editar el usuario" border="0" alt="Pulse para editar el usuario" src="img/edit.png" align="middle" />
+				</a>
+                <a href="javascript:eliminar('5');">
+					<img title="Pulse para eliminar el usuario" border="0" alt="Pulse para eliminar el usuario" src="img/delete.png" align="middle" />
+				</a>
+                <a href="#">
+					<img title="Pulse para ver el usuario" border="0" alt="Pulse para ver el usuario" src="img/view.png" align="middle" />
+				</a>
+              </td>
+            </tr>
+            <tr class="even">
+              <td>00000001R</td>
+              <td>Nombre-03</td>
+              <td>Apellido1-03</td>
+              <td>Apellido2-03</td>
+              <td>ADMINISTRADOR</td>
+              <td>06/10/2015</td>
+              <td>&nbsp;</td>
+              <td class="center">
+                <a href="#">
+					<img title="Pulse para editar el usuario" border="0" alt="Pulse para editar el usuario" src="img/edit.png" align="middle" />
+				</a>
+                <a href="javascript:eliminar('3');">
+					<img title="Pulse para eliminar el usuario" border="0" alt="Pulse para eliminar el usuario" src="img/delete.png" align="middle" />
+				</a>
+                <a href="#">
+					<img title="Pulse para ver el usuario" border="0" alt="Pulse para ver el usuario" src="img/view.png" align="middle" />
+				</a>
+              </td>
+            </tr>
+            <tr class="odd">
+              <td>00000009D</td>
+              <td>Nombre-04</td>
+              <td>Apellido1-04</td>
+              <td>Apellido2-04</td>
+              <td>ADMINISTRADOR</td>
+              <td>06/10/2015</td>
+              <td>&nbsp;</td>
+              <td class="center">
+                <a href="#">
+					<img title="Pulse para editar el usuario" border="0" alt="Pulse para editar el usuario" src="img/edit.png" align="middle" />
+				</a>
+                <a href="javascript:eliminar('5');">
+					<img title="Pulse para eliminar el usuario" border="0" alt="Pulse para eliminar el usuario" src="img/delete.png" align="middle" />
+				</a>
+                <a href="#">
+					<img title="Pulse para ver el usuario" border="0" alt="Pulse para ver el usuario" src="img/view.png" align="middle" />
+				</a>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="8">
+                <div class="pagination">
+                  <div class="sumary">
+                    <a href="#" target="_blank">
+						<img title="Exportación a PDF" alt="Exportación a PDF" src="img/pdf24x24.png" width="16" height="16" />
+					</a>
+                    <a href="#" target="_blank">
+						<img title="Exportación a Excel" alt="Exportación a Excel" src="img/excel24x24.png" width="16" height="16" />
+					</a>
+                    Página 1 de 1 (4 registros)
+                  </div>
+                  <div class="navigation"></div>
+                  <div style="clear: both"></div>
+                </div>
+              </th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

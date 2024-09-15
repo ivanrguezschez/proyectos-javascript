@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>JQuery Loader Example</title>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<style>
+		/* LOADER-BEGIN */
+		.loader-foreground {
+		    padding: 50px;
+		    text-align: center;
+		    background: url(img/loader.gif) center center no-repeat;
+		    position: relative;
+		}
+		.loader-foreground > div.content {
+		    position: absolute;
+		    top: 0px;
+		    left: 0px;
+		    font-weight: bold;
+		}
+		.loader-foreground > div.content > p {
+		    margin: 0;
+		    padding: 5px;
+		}
+		.loader-background {
+		    background: url(img/loader-background.png) 50% 50% repeat;
+		    opacity: 0.5;
+		    filter: alpha(opacity=50);
+		}
+		/* LOADER-END */
+	</style>
+	<script>
+	 	$(document).ready(function() {
+
+		});
+	</script>
+</head>
+<body>
+	<div class="loader-background" id="jquery-loader_bg" style="left: 0px; top: 0px; width: 1920px; height: 938px; position: absolute; opacity: 0.4;"></div>
+	
+	<div class="loader-foreground" id="jquery-loader_fg" style="left: 860px; top: 360.5px; width: 100px; height: 100px; position: absolute;">
+		<div class="content"><p></p></div>
+	</div>
+</body>
+</html>

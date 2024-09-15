@@ -7,6 +7,9 @@ Proyecto que simula una hoja excel desarrollado con html, css y javascript.
 ## general-examples
 Proyecto de ejemplos generales desarrollado con html y javascript.
 
+## jquery-examples
+Proyecto con varios ejemplos que hacen uso de las librerías jquery, jquery-ui y componentes jquery-ui propios.
+
 ## paint-win-95-js 
 Proyecto que simula el programa Paint de Windows 95 desarrollado con html, css y javascript.
 
