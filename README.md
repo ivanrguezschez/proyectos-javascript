@@ -19,6 +19,9 @@ Proyecto con varios ejemplos que hacen uso de las librerías prototype y scripta
 ## stack-game
 Proyecto que implementa el juego de stack game desarrollado con html, css y javascript.
 
+## tetris-js
+Proyecto que implementa el juego de tetris desarrollado con html, css y javascript.
+
 ## tier-maker-js 
 Proyecto que simula una tier maker para puntuar diferentes cosas desarrollado con html, css y javascript.
 
