@@ -13,6 +13,9 @@ Proyecto con varios ejemplos que hacen uso de las librerías jquery, jquery-ui y
 ## paint-win-95-js 
 Proyecto que simula el programa Paint de Windows 95 desarrollado con html, css y javascript.
 
+## perf-benchmark-js
+Proyecto que realiza una prueba de rendimiento de un determinado código javascript mostrando gráficas del rendimiento desarrollado con html, css y javascript.
+
 ## prototype-scriptaculous-examples 
 Proyecto con varios ejemplos que hacen uso de las librerías prototype y scriptaculous.
 
